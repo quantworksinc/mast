@@ -1,0 +1,17 @@
+{
+    "name": "mast",
+    "version": "0.0.1",
+    "description": "MAST - Mock API Server for Testing",
+    "main": "server.js",
+    "scripts": {
+        "start": "node ./server.js"
+    },
+    "author": "Will Palmer <will.palmer@quantworks.com>",
+    "license": "MIT",
+    "dependencies": {
+        "chokidar": "^2.0.2",
+        "express": "^4.16.2",
+        "osprey": "^0.4.1",
+        "raml-mock-service": "^1.0.0"
+    }
+}

@@ -1,0 +1,52 @@
+#%RAML 1.0
+---
+title: Example API
+version: v1
+baseUri: http://dev.fan.com/
+
+/user:
+    get:
+        responses:
+            200:
+                body:
+                    application/json:
+                        example: |
+                            [
+                                {
+                                    "first": "john",
+                                    "last": "doe"
+                                },
+                                {
+                                    "first": "jane",
+                                    "last": "doe"
+                                },
+                                {
+                                    "first": "will",
+                                    "last": "palmer"
+                                }
+                            ]
+/user/{user_id}:
+    get:
+        responses:
+            200:
+                body:
+                    application/json:
+                        example: |
+                            {
+                                "first": "john",
+                                "last": "doe"
+                            }
+            404:
+                body:
+                    application/json:
+                        example: |
+                            {
+                                "description": "User not found."
+                            }
+    post:
+        responses:
+            200:
+                body:
+                    application/json:
+                        example: |
+                            "OK"
