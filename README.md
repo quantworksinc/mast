@@ -1,28 +1,44 @@
 # MAST - Mock API Server for Testing
-A RAML configurable API server with hot-reloading.
+A configurable API server for mocking.
+
+MAST was created to facilitate rapid mocking of APIs. This supports:
+
+- unit/integration testing of external APIs
+- frontend development against yet-to-be-developed services
 
 
-#### Develop
-Create a [RAML API spec](https://raml.org/developers/raml-100-tutorial).
+#### Develop an API
+Create an `api.raml` file compliant with the [RAML API spec](https://raml.org/developers/raml-100-tutorial).
 
-Save it as api.raml.
+Pull the MAST container.
+```
+docker pull quantworks/mast
+```
 
-#### Build
+Run the container with your `api.raml` mounted to `/srv/api/api.raml`. This allows you to edit/save your `api.raml` and the server will hot-reload the API.
+```
+docker run -it --rm -p 8080:8080 -v $(pwd)/api.raml:/srv/api/api.raml quantworks/mast:latest
+```
+
+Test it!
+```
+curl http://0.0.0.0:8080/endpoint | jq .
+```
+
+
+#### Create a new mock service
+Create a `Dockerfile`.
+```
+FROM quantworks/mast:latest
+```
+Write an `api.raml` file. Then build and run your container.
 ```
 docker build -t my-api:latest .
-```
-
-#### Use with hot-reloading
-To leverage hot-reloading, mount your `api.raml` to `/srv/api/api.raml`.
-
-```
-docker run -it --rm -p 8080:8080 -v $(pwd)/api.raml:/srv/api/api.raml my-api:latest
-```
-
-#### Use without hot-reloading
-Once the API is ready, rebuild and run.
-```
 docker run -it --rm -p 8080:8080 my-api:latest
+```
+Test it!
+```
+curl http://0.0.0.0:8080/endpoint | jq .
 ```
 
 ### License

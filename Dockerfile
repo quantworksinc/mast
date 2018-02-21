@@ -11,6 +11,7 @@ RUN apk --update add --no-cache git && \
 
 ADD server.js .
 ADD api.raml .
+ONBUILD ADD api.raml .
 
 VOLUME /srv/api
 
