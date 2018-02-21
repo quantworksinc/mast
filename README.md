@@ -6,6 +6,7 @@ MAST was created to facilitate rapid mocking of APIs. This supports:
 - unit/integration testing of external APIs
 - frontend development against yet-to-be-developed services
 
+Get the image at [Docker Hub](https://hub.docker.com/r/quantworks/mast/).
 
 #### Develop an API
 Create an `api.raml` file compliant with the [RAML API spec](https://raml.org/developers/raml-100-tutorial).
