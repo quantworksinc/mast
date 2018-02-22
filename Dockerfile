@@ -20,6 +20,14 @@ RUN apk --update add --no-cache git openssl && \
 ADD server.js .
 ADD api.raml .
 ONBUILD ADD api.raml .
+ONBUILD RUN \
+    openssl genrsa -out ./cert/ssl.key 2048 && \
+    openssl req \
+        -new -x509 \
+        -key ./cert/ssl.key \
+        -out ./cert/ssl.cert \
+        -days 3650 \
+        -subj /CN=localhost
 
 VOLUME /srv/api
 
