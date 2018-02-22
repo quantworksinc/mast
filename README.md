@@ -28,7 +28,7 @@ docker run -it --rm \
 Test it!
 ```
 curl -s http://0.0.0.0:8080/endpoint | jq .
-curl -sk https://0.0.0.0:8080/endpoint | jq .
+curl -sk https://0.0.0.0:8443/endpoint | jq .
 ```
 
 
@@ -48,7 +48,7 @@ docker run -it --rm \
 Test it!
 ```
 curl -s http://0.0.0.0:8080/endpoint | jq .
-curl -sk https://0.0.0.0:8080/endpoint | jq .
+curl -sk https://0.0.0.0:8443/endpoint | jq .
 ```
 
 ### License
