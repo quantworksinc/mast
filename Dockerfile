@@ -5,6 +5,8 @@ MAINTAINER label="Will Palmer <will.palmer@quantworks.com>"
 WORKDIR /srv
 
 ADD package.json .
+ENV HTTP=80
+ENV HTTPS=443
 
 RUN apk --update add --no-cache git openssl && \
     mkdir cert && \
@@ -30,7 +32,5 @@ ONBUILD RUN \
         -subj /CN=localhost
 
 VOLUME /srv/api
-
-EXPOSE 8080
 
 CMD ["npm", "run", "start"]

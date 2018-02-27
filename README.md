@@ -19,16 +19,26 @@ docker pull quantworks/mast
 Run the container with your `api.raml` mounted to `/srv/api/api.raml`. This allows you to edit/save your `api.raml` and the server will hot-reload the API.
 ```
 docker run -it --rm \
-    -p 8080:8080 \
-    -p 8443:8443 \
+    -p 80:80 \
+    -p 443:443 \
+    -v $(pwd)/api.raml:/srv/api/api.raml \
+    quantworks/mast:latest
+
+# or with custom ports
+
+docker run -it --rm \
+    -e HTTP=8080 \
+    -e HTTPS=8443 \
+    -p 80:8080 \
+    -p 443:8443 \
     -v $(pwd)/api.raml:/srv/api/api.raml \
     quantworks/mast:latest
 ```
 
 Test it!
 ```
-curl -s http://0.0.0.0:8080/endpoint | jq .
-curl -sk https://0.0.0.0:8443/endpoint | jq .
+curl -s http://0.0.0.0/endpoint | jq .
+curl -sk https://0.0.0.0/endpoint | jq .
 ```
 
 
@@ -41,14 +51,24 @@ Write an `api.raml` file. Then build and run your container.
 ```
 docker build -t my-api:latest .
 docker run -it --rm \
-    -p 8080:8080 \
-    -p 8443:8443 \
+    -p 80:80 \
+    -p 443:443 \
     my-api:latest
+
+# or with custom ports
+
+docker run -it --rm \
+    -e HTTP=8080 \
+    -e HTTPS=8443 \
+    -p 80:8080 \
+    -p 443:8443 \
+    -v $(pwd)/api.raml:/srv/api/api.raml \
+    quantworks/mast:latest
 ```
 Test it!
 ```
-curl -s http://0.0.0.0:8080/endpoint | jq .
-curl -sk https://0.0.0.0:8443/endpoint | jq .
+curl -s http://0.0.0.0/endpoint | jq .
+curl -sk https://0.0.0.0/endpoint | jq .
 ```
 
 ### License

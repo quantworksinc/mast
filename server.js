@@ -10,8 +10,8 @@ var mock = require('raml-mock-service');
 
 var config = {
     ports: {
-        http: 8080,
-        https: 8443
+        http: process.env.HTTP,
+        https: process.env.HTTPS
     },
     parser: {
         rejectOnErrors: true
